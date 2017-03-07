@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ng004">
+<head>
+	<meta charset="UTF-8">
+	<title>ng004</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="../js/angular.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<style>
+		.lock{
+			background: #dcdcdc;
+		}
+	</style>
+</head>
+<body ng-controller="ng004Ctrl">
+	<div class="form-group col-xs-6">
+		性别：
+		<select ng-model="user.sex" class="form-control">
+			<option value="">选择性别</option>
+			<option value="1" ng-selected="user.sex==1">男</option>
+			<option value="2"  ng-selected="user.sex==2">女</option>
+		</select>
+		<input type="radio" ng-model="user.sex" ng-value="1">男
+		<input type="radio" ng-model="user.sex" ng-value="2">女
+		<div ng-class="red:false,font:false">
+			年龄：<input type="text" class="form-control" ng-model="user.age">
+			邮箱：<input type="text" class="form-control" ng-model="user.email" ng-readonly="user.uid">
+			<input type="text" class="form-control" ng-model="title" ng-model-options="{updateOn:'default blur',debounce:{default:1000,blur:0}}">
+			{{title}}
+		</div>
+	</div>
+	<div class="form-group col-xs-12">
+		<table class="table">
+			<tr>
+				<td><input type="checkbox" ng-model="all">&nbsp;&nbsp;<span ng-bind="all?'取消':'全选'"></span> </td>
+				<td>标题</td>
+				<td>网址</td>
+			</tr>
+			<tr ng-repeat="v in data">
+				<td><input type="checkbox" ng-checked="all"></td>
+				<td>{{v.name}}</td>
+				<td>{{v.url}}</td>
+			</tr>
+		</table>
+		<table class="table">
+			<tr>
+				<td>编号</td>
+				<td>姓名</td>
+				<td>年龄</td>
+			</tr>
+			<tr ng-repeat="a in family" ng-class="{lock:a.status==0}">
+				<td>{{v.id}}</td>
+				<td>{{a.username}}</td>
+				<td>{{a.age}}</td>
+			</tr> 
+		</table>
+
+	</div>
+	
+	<script>
+		var m=angular.module('ng004',[]);
+		m.controller('ng004Ctrl',['$scope',function($scope){
+			$scope.user={age:33,uid:1,email:'2345@qq.com'};
+			$scope.data=[
+			{name:'全选0001','url':"www.1quanxuan.com"},
+			{name:'全选0002','url':"www.2quanxuan.com"},
+			{name:'全选0003','url':"www.3quanxuan.com"}
+			];
+			$scope.family=[
+				{username:'黄晓明','age':40,status:1},
+				{username:'angelababy','age':29,status:0},
+				{username:'小海绵','age':1,status:1}
+			]
+		}]);
+	</script>
+</body>
+</html>
