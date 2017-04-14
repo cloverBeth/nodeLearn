@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0,user-scalable=0"name="viewport" />
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<title>vue</title>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+		<button v-on:click="reverseMsg">逆转消息</button>
+	</div>
+	<div id="app-2">
+		<span v-bind:title="message">
+			鼠标悬停几秒查看此处动态绑定的提示信息！
+		</span>
+		<p v-if="seen">现在你看到我了</p>
+	</div>
+	<div id="app-3">
+		<ol>
+			<li v-for="todo in todos">
+				{{todo.text}}
+			</li>
+		</ol>
+	</div>
+	<div id="app-7">
+		<ol>
+			<todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+		</ol>
+	</div>
+	<script>
+		new Vue({
+			el:'#app',
+			data:{
+				message:'Hello Vue!'
+			},
+			methods:{
+				reverseMsg:function(){
+					this.message=this.message.split('').reverse().join('')
+				}
+			}
+
+		});
+		new Vue({
+			el:"#app-2",
+			data:{
+				message:'页面加载于 '+new Date(),
+				seen:false
+			}
+		});
+		new Vue({
+			el:"#app-3",
+			data:{
+				todos:[
+					{text:'学习Javascript'},
+					{text:'学习 Vue'},
+					{text:'整个牛项目'}
+				]
+			}
+		});
+		Vue.component('todo-item',{
+			props:['todo'],
+			template:'<li>{{todo.text}}</li>'
+		});
+		new Vue({
+			el:'#app-7',
+			data:{
+				groceryList:[
+					{text:'蔬菜'},
+					{text:'奶酪'},
+					{text:'随便其他什么人吃的东西'}
+				]
+			}
+		})
+	</script>
+</body>
+</html>
