@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas 学习之旅</title>
+	<style>
+		#canvas{
+
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		canvas.width=2000;
+		canvas.height=2000;
+		var context=canvas.getContext("2d");
+		context.lineWidth=10;
+
+		context.beginPath();
+		context.moveTo(100,200);
+		context.lineTo(300,400);
+		context.lineTo(100,600);
+		context.strokeStyle="#058";
+		context.stroke();
+
+		context.beginPath();		
+		context.moveTo(300,200);
+		context.lineTo(500,400);
+		context.lineTo(300,600);
+		context.strokeStyle="#ff0000";
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(500,200);
+		context.lineTo(700,400);
+		context.lineTo(500,600);
+		context.strokeStyle="#466f16";
+		context.stroke();
+
+
+		context.beginPath();
+		context.moveTo(100,900);
+		context.lineTo(500,900);
+		context.lineTo(500,800);
+		context.lineTo(700,1000);
+		context.lineTo(500,1200);
+		context.lineTo(500,1100);
+		context.lineTo(100,1100);
+		context.fillStyle="#466f16";
+		context.fill();
+		context.strokeStyle="#058";
+		context.closePath();
+		context.stroke();
+
+
+
+
+ 
+	</script>
+</body>
+</html>
